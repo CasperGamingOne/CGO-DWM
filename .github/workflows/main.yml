@@ -1,0 +1,49 @@
+name: Sync Upstream Mirror
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Runs automatically every day at midnight UTC
+  workflow_dispatch:   # Allows you to trigger this manually from the GitHub UI anytime
+
+jobs:
+  sync:
+    name: Pull Upstream Changes
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Crucial: Allows the action to push to your repository
+
+    steps:
+      - name: Checkout local master branch
+        uses: actions/checkout@v4
+        with:
+          ref: master
+          fetch-depth: 0 # Fetches all history so Git can calculate merges cleanly
+
+      - name: Configure Git Identity
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Fetch from suckless.org
+        run: |
+          git remote add upstream https://git.suckless.org/dwm
+          git fetch upstream master
+
+      - name: Check and Push Updates
+        run: |
+          LOCAL_HASH=$(git rev-parse HEAD)
+          UPSTREAM_HASH=$(git rev-parse upstream/master)
+
+          if [ "$LOCAL_HASH" != "$UPSTREAM_HASH" ]; then
+            echo "New upstream commits found!"
+            echo "Local: $LOCAL_HASH"
+            echo "Upstream: $UPSTREAM_HASH"
+            
+            # Fast-forward your master branch to match upstream exactly
+            git merge upstream/master --ff-only
+            
+            # Push changes back to your GitHub repository
+            git push origin master
+          else
+            echo "Your master branch is perfectly synced with git.suckless.org."
+          fi
