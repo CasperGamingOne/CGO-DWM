@@ -1,0 +1,77 @@
+name: Security
+
+on:
+  push:
+    branches: [ "testing", "my_dwm" ]
+  pull_request:
+    branches: [ "testing", "my_dwm" ]
+  schedule:
+    # Runs every day at 10:00 UTC 
+    # (Matches 13:00 Bucharest time during Daylight Saving / EEST)
+    - cron: '0 10 * * *'
+  workflow_dispatch: # Allows you to manually trigger this workflow anytime from the Actions tab
+
+jobs:
+  codeql-analysis:
+    name: CodeQL Security Scan
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: c-cpp
+          build-mode: manual
+
+      - name: Install Build Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential libx11-dev libxft-dev libxinerama-dev pkg-config
+
+      - name: Build Workspace for Tracer
+        run: |
+          if [ ! -f config.h ]; then
+            cp config.def.h config.h
+          fi
+          make clean dwm
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+
+  cppcheck-analysis:
+    name: Cppcheck Code Quality
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Run Cppcheck Static Analysis
+        uses: deep5050/cppcheck-action@main
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          enable: all
+          inline_suppression: enable
+
+  secret-scanner:
+    name: Secret Scanning (TruffleHog)
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: TruffleHog OSS Scan
+        uses: trufflesecurity/trufflehog-oss-action@main
+        with:
+          base: ${{ github.event.repository.default_branch }}
+          head: HEAD
