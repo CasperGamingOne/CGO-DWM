@@ -22,7 +22,7 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v4
@@ -51,10 +51,10 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Run Cppcheck Static Analysis
-        uses: deep5050/cppcheck-action@a4dcbb4f03f99ac4fbe141dbefd199ff64fc4622
+        uses: deep5050/cppcheck-action@main
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           enable: all
@@ -66,12 +66,12 @@ jobs:
     
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
       - name: TruffleHog OSS Scan
-        uses: trufflesecurity/trufflehog@6261f5cd38e133cdcf00c23e3943f3e9d012d538
+        uses: trufflesecurity/trufflehog@main
         with:        
           base: ${{ github.event.repository.default_branch }}
           head: testing
