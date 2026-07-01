@@ -5,6 +5,11 @@ on:
     branches: [ "testing", "my_dwm" ]
   pull_request:
     branches: [ "testing", "my_dwm" ]
+  schedule:
+    # Runs every day at 10:00 UTC 
+    # (Matches 13:00 Bucharest time during Daylight Saving / EEST)
+    - cron: '0 10 * * *'
+  workflow_dispatch: # Allows you to manually trigger this workflow anytime from the Actions tab
 
 jobs:
   build:
