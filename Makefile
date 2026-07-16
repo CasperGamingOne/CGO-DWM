@@ -19,8 +19,14 @@ config.h:
 dwm: ${OBJ}
 	${CC} -o $@ ${OBJ} ${LDFLAGS}
 
+test_util: test_util.c util.c
+	${CC} -o $@ test_util.c util.c ${CFLAGS} ${LDFLAGS}
+
+test: test_util
+	./test_util
+
 clean:
-	rm -f dwm ${OBJ} dwm-${VERSION}.tar.gz
+	rm -f dwm ${OBJ} dwm-${VERSION}.tar.gz test_util
 
 dist: clean
 	mkdir -p dwm-${VERSION}
@@ -42,4 +48,4 @@ uninstall:
 	rm -f ${DESTDIR}${PREFIX}/bin/dwm\
 		${DESTDIR}${MANPREFIX}/man1/dwm.1
 
-.PHONY: all clean dist install uninstall
+.PHONY: all clean dist install uninstall test test_util

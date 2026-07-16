@@ -399,7 +399,7 @@ arrange(Monitor *m)
 void
 arrangemon(Monitor *m)
 {
-	strncpy(m->ltsymbol, m->lt[m->sellt]->symbol, sizeof m->ltsymbol);
+	snprintf(m->ltsymbol, sizeof m->ltsymbol, "%s", m->lt[m->sellt]->symbol);
 	if (m->lt[m->sellt]->arrange)
 		m->lt[m->sellt]->arrange(m);
 }
@@ -559,14 +559,12 @@ configurenotify(XEvent *e)
 	Monitor *m;
 	Client *c;
 	XConfigureEvent *ev = &e->xconfigure;
-	int dirty;
 
-	/* TODO: updategeom handling sucks, needs to be simplified */
 	if (ev->window == root) {
-		dirty = (sw != ev->width || sh != ev->height);
+		int isb = (sw != ev->width || sh != ev->height);
 		sw = ev->width;
 		sh = ev->height;
-		if (updategeom() || dirty) {
+		if (updategeom() || isb) {
 			drw_resize(drw, sw, bh);
 			updatebars();
 			for (m = mons; m; m = m->next) {
@@ -646,7 +644,7 @@ createmon(void)
 	m->topbar = topbar;
 	m->lt[0] = &layouts[0];
 	m->lt[1] = &layouts[1 % LENGTH(layouts)];
-	strncpy(m->ltsymbol, layouts[0].symbol, sizeof m->ltsymbol);
+	snprintf(m->ltsymbol, sizeof m->ltsymbol, "%s", layouts[0].symbol);
 	return m;
 }
 
@@ -1539,7 +1537,7 @@ setlayout(const Arg *arg)
 		selmon->sellt ^= 1;
 	if (arg && arg->v)
 		selmon->lt[selmon->sellt] = (Layout *)arg->v;
-	strncpy(selmon->ltsymbol, selmon->lt[selmon->sellt]->symbol, sizeof selmon->ltsymbol);
+	snprintf(selmon->ltsymbol, sizeof selmon->ltsymbol, "%s", selmon->lt[selmon->sellt]->symbol);
 	if (selmon->sel)
 		arrange(selmon);
 	else
