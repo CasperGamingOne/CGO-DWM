@@ -1589,8 +1589,10 @@ setup(void)
 	bh = drw->fonts->h + 2;
 	for (i = 0; i < LENGTH(tags); i++)
 		tagw[i] = TEXTW(tags[i]);
-	if (!gettextprop(root, XA_WM_NAME, stext, sizeof(stext)))
-		strcpy(stext, "dwm-"VERSION);
+	if (!gettextprop(root, XA_WM_NAME, stext, sizeof(stext))) {
+		strncpy(stext, "dwm-"VERSION, sizeof(stext) - 1);
+		stext[sizeof(stext) - 1] = '\0';
+	}
 	stextw = TEXTW(stext) - lrpad + 2;
 	updategeom();
 	/* init atoms */
@@ -2048,8 +2050,10 @@ updatesizehints(Client *c)
 void
 updatestatus(void)
 {
-	if (!gettextprop(root, XA_WM_NAME, stext, sizeof(stext)))
-		strcpy(stext, "dwm-"VERSION);
+	if (!gettextprop(root, XA_WM_NAME, stext, sizeof(stext))) {
+		strncpy(stext, "dwm-"VERSION, sizeof(stext) - 1);
+		stext[sizeof(stext) - 1] = '\0';
+	}
 	stextw = TEXTW(stext) - lrpad + 2;
 	drawbar(selmon);
 }
@@ -2059,8 +2063,10 @@ updatetitle(Client *c)
 {
 	if (!gettextprop(c->win, netatom[NetWMName], c->name, sizeof c->name))
 		gettextprop(c->win, XA_WM_NAME, c->name, sizeof c->name);
-	if (c->name[0] == '\0') /* hack to mark broken clients */
-		strcpy(c->name, broken);
+	if (c->name[0] == '\0') { /* hack to mark broken clients */
+		strncpy(c->name, broken, sizeof(c->name) - 1);
+		c->name[sizeof(c->name) - 1] = '\0';
+	}
 }
 
 void
