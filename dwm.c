@@ -560,10 +560,10 @@ configurenotify(XEvent *e)
 	XConfigureEvent *ev = &e->xconfigure;
 
 	if (ev->window == root) {
-		int dirty = (sw != ev->width || sh != ev->height);
+		int isb = (sw != ev->width || sh != ev->height);
 		sw = ev->width;
 		sh = ev->height;
-		if (updategeom() || dirty) {
+		if (updategeom() || isb) {
 			drw_resize(drw, sw, bh);
 			updatebars();
 			for (m = mons; m; m = m->next) {
