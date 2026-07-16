@@ -2183,6 +2183,9 @@ zoom(const Arg *arg)
 	pop(c);
 }
 
+/* Safely copies src string into dest buffer of given size.
+ * Truncates src if it is longer than size-1, and always
+ * explicitly null-terminates dest. */
 static void
 safe_strcpy(char *dest, const char *src, size_t size)
 {
