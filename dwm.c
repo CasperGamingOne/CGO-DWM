@@ -399,7 +399,7 @@ arrange(Monitor *m)
 void
 arrangemon(Monitor *m)
 {
-	snprintf(m->ltsymbol, sizeof m->ltsymbol, "%s", m->lt[m->sellt]->symbol);
+	safe_strcpy(m->ltsymbol, m->lt[m->sellt]->symbol, sizeof m->ltsymbol);
 	if (m->lt[m->sellt]->arrange)
 		m->lt[m->sellt]->arrange(m);
 }
@@ -644,7 +644,7 @@ createmon(void)
 	m->topbar = topbar;
 	m->lt[0] = &layouts[0];
 	m->lt[1] = &layouts[1 % LENGTH(layouts)];
-	snprintf(m->ltsymbol, sizeof m->ltsymbol, "%s", layouts[0].symbol);
+	safe_strcpy(m->ltsymbol, layouts[0].symbol, sizeof m->ltsymbol);
 	return m;
 }
 
@@ -1537,7 +1537,7 @@ setlayout(const Arg *arg)
 		selmon->sellt ^= 1;
 	if (arg && arg->v)
 		selmon->lt[selmon->sellt] = (Layout *)arg->v;
-	snprintf(selmon->ltsymbol, sizeof selmon->ltsymbol, "%s", selmon->lt[selmon->sellt]->symbol);
+	safe_strcpy(selmon->ltsymbol, selmon->lt[selmon->sellt]->symbol, sizeof selmon->ltsymbol);
 	if (selmon->sel)
 		arrange(selmon);
 	else
@@ -2183,6 +2183,9 @@ zoom(const Arg *arg)
 	pop(c);
 }
 
+/* Safely copies src string into dest buffer of given size.
+ * Truncates src if it is longer than size-1, and always
+ * explicitly null-terminates dest. */
 static void
 safe_strcpy(char *dest, const char *src, size_t size)
 {
