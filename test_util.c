@@ -40,6 +40,11 @@ int run_death_test(void (*test_fn)(void), const char *expected_stderr_prefix, co
 
         while ((nbytes = read(pipefd[0], buffer + total_bytes, sizeof(buffer) - total_bytes - 1)) > 0) {
             total_bytes += nbytes;
+            if (total_bytes >= sizeof(buffer) - 1) {
+                fprintf(stderr, "Buffer overflow: stderr output too long\n");
+                close(pipefd[0]);
+                return 0;
+            }
         }
         buffer[total_bytes] = '\0';
         close(pipefd[0]);
@@ -92,6 +97,11 @@ void test_errno_append() {
     die("error:");
 }
 
+void test_errno_append_no_errno() {
+    errno = 0;
+    die("error:");
+}
+
 void test_empty_string() {
     die("");
 }
@@ -103,7 +113,7 @@ void test_just_colon() {
 
 int main() {
     int passed = 0;
-    int total = 5;
+    int total = 6;
 
     // Disable stdout buffering to prevent repeated output when fork is called
     setbuf(stdout, NULL);
@@ -126,6 +136,15 @@ int main() {
     char expected_errno_msg[1024];
     snprintf(expected_errno_msg, sizeof(expected_errno_msg), "error: %s\n", strerror(ENOENT));
     if (run_death_test(test_errno_append, expected_errno_msg, expected_errno_msg, 1)) {
+        passed++;
+    } else {
+        printf("FAILED\n");
+    }
+
+    printf("Running test_errno_append_no_errno...\n");
+    char expected_errno_msg_no_errno[1024];
+    snprintf(expected_errno_msg_no_errno, sizeof(expected_errno_msg_no_errno), "error: %s\n", strerror(0));
+    if (run_death_test(test_errno_append_no_errno, expected_errno_msg_no_errno, expected_errno_msg_no_errno, 1)) {
         passed++;
     } else {
         printf("FAILED\n");
