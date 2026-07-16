@@ -233,6 +233,7 @@ static int xerror(Display *dpy, XErrorEvent *ee);
 static int xerrordummy(Display *dpy, XErrorEvent *ee);
 static int xerrorstart(Display *dpy, XErrorEvent *ee);
 static void zoom(const Arg *arg);
+static void safe_strcpy(char *dest, const char *src, size_t size);
 
 /* variables */
 static const char broken[] = "broken";
@@ -1589,10 +1590,8 @@ setup(void)
 	bh = drw->fonts->h + 2;
 	for (i = 0; i < LENGTH(tags); i++)
 		tagw[i] = TEXTW(tags[i]);
-	if (!gettextprop(root, XA_WM_NAME, stext, sizeof(stext))) {
-		strncpy(stext, "dwm-"VERSION, sizeof(stext) - 1);
-		stext[sizeof(stext) - 1] = '\0';
-	}
+	if (!gettextprop(root, XA_WM_NAME, stext, sizeof(stext)))
+		safe_strcpy(stext, "dwm-"VERSION, sizeof(stext));
 	stextw = TEXTW(stext) - lrpad + 2;
 	updategeom();
 	/* init atoms */
@@ -2050,10 +2049,8 @@ updatesizehints(Client *c)
 void
 updatestatus(void)
 {
-	if (!gettextprop(root, XA_WM_NAME, stext, sizeof(stext))) {
-		strncpy(stext, "dwm-"VERSION, sizeof(stext) - 1);
-		stext[sizeof(stext) - 1] = '\0';
-	}
+	if (!gettextprop(root, XA_WM_NAME, stext, sizeof(stext)))
+		safe_strcpy(stext, "dwm-"VERSION, sizeof(stext));
 	stextw = TEXTW(stext) - lrpad + 2;
 	drawbar(selmon);
 }
@@ -2063,10 +2060,8 @@ updatetitle(Client *c)
 {
 	if (!gettextprop(c->win, netatom[NetWMName], c->name, sizeof c->name))
 		gettextprop(c->win, XA_WM_NAME, c->name, sizeof c->name);
-	if (c->name[0] == '\0') { /* hack to mark broken clients */
-		strncpy(c->name, broken, sizeof(c->name) - 1);
-		c->name[sizeof(c->name) - 1] = '\0';
-	}
+	if (c->name[0] == '\0') /* hack to mark broken clients */
+		safe_strcpy(c->name, broken, sizeof(c->name));
 }
 
 void
@@ -2188,6 +2183,15 @@ zoom(const Arg *arg)
 	if (c == nexttiled(selmon->clients) && !(c = nexttiled(c->next)))
 		return;
 	pop(c);
+}
+
+static void
+safe_strcpy(char *dest, const char *src, size_t size)
+{
+	if (size > 0) {
+		strncpy(dest, src, size - 1);
+		dest[size - 1] = '\0';
+	}
 }
 
 int
