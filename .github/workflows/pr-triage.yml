@@ -1,0 +1,162 @@
+name: PR Triage
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened, ready_for_review, converted_to_draft]
+
+jobs:
+  triage:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      issues: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Triage PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            const title = pr.title;
+            const author = pr.user.login;
+            const isDraft = pr.draft || /\bwip\b/i.test(title) || title.toLowerCase().startsWith('draft');
+
+            let labelsToAdd = [];
+            let labelsToRemove = [];
+
+            // 1. Handle Draft / WIP
+            if (isDraft) {
+              labelsToAdd.push('do-not-merge');
+            } else {
+              labelsToRemove.push('do-not-merge');
+            }
+
+            // 2. Title Linter & Priority Labeling
+            const titleRegex = /^(fix|bug|security|feat|docs|style|refactor|perf|test|chore)(\(.+\))?:\s.+/i;
+            const match = titleRegex.exec(title);
+            let isValidTitle = false;
+            let titlePrefix = "";
+
+            if (match) {
+              isValidTitle = true;
+              titlePrefix = match[1].toLowerCase();
+            }
+
+            if (!isValidTitle) {
+              const commentBody = `@${author} The PR title format is invalid. Please use the Conventional Commits format:\n\n\`<type>[optional scope]: <description>\`\n\nValid types are: \`fix\`, \`bug\`, \`security\`, \`feat\`, \`docs\`, \`style\`, \`refactor\`, \`perf\`, \`test\`, \`chore\`.\n\nExample: \`fix: resolve crash on startup\``;
+
+              // Check if we already commented to avoid spamming
+              const comments = await github.paginate(github.rest.issues.listComments, {
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: pr.number,
+              });
+
+              const hasCommented = comments.some(c => c.body.includes('The PR title format is invalid') && c.user.login === 'github-actions[bot]');
+
+              if (!hasCommented) {
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: pr.number,
+                  body: commentBody
+                });
+              }
+              core.setFailed('Invalid PR title format.');
+              return; // Stop execution if title is invalid
+            } else {
+              // Add priority based on prefix
+              if (['fix', 'bug'].includes(titlePrefix)) {
+                labelsToAdd.push('priority/high');
+                labelsToRemove.push('priority/critical', 'priority/medium', 'priority/low');
+              } else if (titlePrefix === 'security') {
+                labelsToAdd.push('priority/critical');
+                labelsToRemove.push('priority/high', 'priority/medium', 'priority/low');
+              } else {
+                labelsToAdd.push('priority/medium');
+                labelsToRemove.push('priority/critical', 'priority/high', 'priority/low');
+              }
+            }
+
+            // 3. Size Labeling
+            const additions = pr.additions;
+            const deletions = pr.deletions;
+            const totalChanges = additions + deletions;
+
+            let sizeLabel = '';
+            if (totalChanges < 200) {
+              sizeLabel = 'size/small';
+              labelsToRemove.push('size/medium', 'size/large');
+            } else if (totalChanges <= 700) {
+              sizeLabel = 'size/medium';
+              labelsToRemove.push('size/small', 'size/large');
+            } else {
+              sizeLabel = 'size/large';
+              labelsToRemove.push('size/small', 'size/medium');
+            }
+            labelsToAdd.push(sizeLabel);
+
+            // 4. Missing Tests Detection
+            const files = await github.paginate(github.rest.pulls.listFiles, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: pr.number,
+            });
+
+            let sourceChanged = false;
+            let testsChanged = false;
+
+            for (const file of files) {
+              const filename = file.filename.toLowerCase();
+              if ((filename.endsWith('.c') || filename.endsWith('.h')) && !filename.includes('test')) {
+                sourceChanged = true;
+              }
+              if (filename.includes('test') && (filename.endsWith('.c') || filename.endsWith('.h'))) {
+                testsChanged = true;
+              }
+            }
+
+            if (sourceChanged && !testsChanged) {
+              labelsToAdd.push('needs-tests');
+            } else {
+              labelsToRemove.push('needs-tests');
+            }
+
+            // 5. Apply Labels
+            if (labelsToAdd.length > 0) {
+              // Remove duplicates
+              labelsToAdd = [...new Set(labelsToAdd)];
+
+              // Ensure labels exist before applying (optional, but good practice to avoid errors if label doesn't exist, though Github API usually auto-creates or we can ignore)
+              try {
+                await github.rest.issues.addLabels({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: pr.number,
+                  labels: labelsToAdd
+                });
+              } catch (e) {
+                console.log('Error adding labels:', e);
+              }
+            }
+
+            // Remove old labels
+            if (labelsToRemove.length > 0) {
+              const currentLabels = pr.labels.map(l => l.name);
+              for (const label of labelsToRemove) {
+                if (currentLabels.includes(label)) {
+                  try {
+                    await github.rest.issues.removeLabel({
+                      owner: context.repo.owner,
+                      repo: context.repo.repo,
+                      issue_number: pr.number,
+                      name: label
+                    });
+                  } catch (e) {
+                    console.log(`Could not remove label ${label}:`, e);
+                  }
+                }
+              }
+            }

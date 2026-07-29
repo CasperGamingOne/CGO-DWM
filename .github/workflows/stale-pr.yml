@@ -1,0 +1,24 @@
+name: Mark Stale PRs
+
+on:
+  schedule:
+    - cron: '30 1 * * *' # Run daily at 1:30 AM
+  workflow_dispatch:
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+    steps:
+      - name: Mark Stale Pull Requests
+        uses: actions/stale@v9
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          stale-pr-message: 'This PR has been inactive for 5 days and has been marked as stale. It will remain open indefinitely, but please provide an update if you intend to continue working on it.'
+          days-before-stale: 5
+          days-before-close: -1 # Never auto-close
+          stale-pr-label: 'stale'
+          exempt-pr-labels: 'do-not-merge,priority/critical' # Example exemptions
+          operations-per-run: 50
