@@ -1,7 +1,16 @@
 ### CGO_Custom_DWM
 
 > [!IMPORTANT]
-> For now this can be seen as a mirror, till the README will fully change and a docs will be published.
+> For now this can be seen as a mirror, till the README will fully change and a docs will be published. AI use exists cuz it's too much work for a hobbyist
+
+> [!NOTE]
+> For future contributors, this is what i plan to implement if you would like to help. First ofc fork the project then open up a pull request.
+> DOCUMENT EVERYTHING YOU DO IN THE PULL REQUEST. Also don't touch upstream please, that is the vanilla dwm
+
+- [ ] trying to modularize dwm, just being in a single .c file is something alright
+- [ ] implementing dwm-ipc or stealing an already made one XD, kidding
+- [ ] standardize code formatting & Linting
+- [ ] setup more automated CIs
 
 dwm - dynamic window manager
 ============================
