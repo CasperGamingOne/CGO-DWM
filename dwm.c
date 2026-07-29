@@ -1802,10 +1802,22 @@ updatestatus(void)
 void
 updatetitle(Client *c)
 {
+	XClassHint ch = { NULL, NULL };
+
 	if (!gettextprop(c->win, netatom[NetWMName], c->name, sizeof c->name))
 		gettextprop(c->win, XA_WM_NAME, c->name, sizeof c->name);
-	if (c->name[0] == '\0') /* hack to mark broken clients */
-		safe_strcpy(c->name, broken, sizeof(c->name));
+	if (c->name[0] == '\0') { /* hack to mark broken clients */
+		if (XGetClassHint(dpy, c->win, &ch)) {
+			if (ch.res_class)
+				safe_strcpy(c->name, ch.res_class, sizeof(c->name));
+			else if (ch.res_name)
+				safe_strcpy(c->name, ch.res_name, sizeof(c->name));
+			if (ch.res_class) XFree(ch.res_class);
+			if (ch.res_name) XFree(ch.res_name);
+		}
+		if (c->name[0] == '\0') /* final fallback */
+			safe_strcpy(c->name, broken, sizeof(c->name));
+	}
 }
 
 void
