@@ -16,7 +16,9 @@
     <generated>
       <config projectName="CGO-DWM" targetName="all" />
       <config projectName="CGO-DWM" targetName="dwm" />
+      <config projectName="CGO-DWM" targetName="test_util" />
       <config projectName="CGO-DWM" targetName="Makefile" />
+      <config projectName="CGO-DWM" targetName="test" />
       <config projectName="CGO-DWM" targetName="install" />
       <config projectName="CGO-DWM" targetName="dist" />
       <config projectName="CGO-DWM" targetName="uninstall" />
@@ -28,7 +30,13 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e1f14cb-8c0d-4ed0-a0ce-301be8100503" name="Changes" comment="added preserveonrestart patch to dwm" />
+    <list default="true" id="6e1f14cb-8c0d-4ed0-a0ce-301be8100503" name="Changes" comment="added preserveonrestart patch to dwm">
+      <change beforePath="$PROJECT_DIR$/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/editor.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dwm.c" beforeDir="false" afterPath="$PROJECT_DIR$/dwm.c" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -37,9 +45,16 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
+  <component name="CopilotPersistence">
+    <persistenceIdMap>
+      <entry key="_/home/djsnowdogs/CLionProjects/CGO-DWM" value="3HBcfY8n4jtchRn2g7pfRSAl61T" />
+    </persistenceIdMap>
+  </component>
+  <component name="CurrentDebugProfile">
+    <option name="debugProfileId" value="9b173846-0e05-4e8d-bd8c-84d0394c4897" />
+  </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="25" />
-    <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
+    <option name="cachedIndexableFilesCount" value="29" />
   </component>
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
@@ -49,10 +64,11 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="testing" />
+        <entry key="$PROJECT_DIR$" value="my_dwm" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -62,8 +78,8 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;git@github.com:CasperGamingOne/CGO-DWM.git&quot;,
-    &quot;accountId&quot;: &quot;a0f20276-a8ec-419f-a173-0e571f02dcd4&quot;
+    &quot;url&quot;: &quot;https://github.com/DJSnowDogs/CGO-DWM.git&quot;,
+    &quot;accountId&quot;: &quot;d606b11f-404c-481b-b094-3c56ac8b8a4c&quot;
   }
 }</component>
   <component name="MacroExpansionManager">
@@ -102,23 +118,23 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.2932087373079697" />
-      <entry key="MS500" value="1.7828637245102035" />
-      <entry key="S2" value="2.282359740541195" />
-      <entry key="S5" value="3.96166276270454" />
-      <entry key="S10" value="6.423899162214082" />
-      <entry key="S30" value="13.030009159744042" />
-      <entry key="S60" value="20.72735788533907" />
-      <entry key="M2" value="33.33606146831593" />
-      <entry key="M5" value="61.72777210708081" />
-      <entry key="M10" value="86.24038073571884" />
-      <entry key="M15" value="98.44635371583041" />
-      <entry key="M30" value="113.71280235085281" />
-      <entry key="H1" value="122.7816776848496" />
-      <entry key="H2" value="127.73688040136" />
-      <entry key="H4" value="130.32857699876925" />
-      <entry key="D1" value="132.54910528694765" />
-      <entry key="W1" value="132.93544630910074" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0" />
+      <entry key="S2" value="1.0" />
+      <entry key="S5" value="1.0" />
+      <entry key="S10" value="1.0" />
+      <entry key="S30" value="1.0" />
+      <entry key="S60" value="1.0" />
+      <entry key="M2" value="1.0" />
+      <entry key="M5" value="1.0000000000000004" />
+      <entry key="M10" value="1.000000289985743" />
+      <entry key="M15" value="1.0002392894892027" />
+      <entry key="M30" value="1.2001860003902285" />
+      <entry key="H1" value="6.8223207785545" />
+      <entry key="H2" value="32.445423618971006" />
+      <entry key="H4" value="74.10531640884409" />
+      <entry key="D1" value="148.69235846315868" />
+      <entry key="W1" value="167.61782643842048" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
@@ -140,23 +156,23 @@
       <entry key="W1" value="0.0" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.2462283727274703" />
-      <entry key="MS500" value="1.7665594285519148" />
-      <entry key="S2" value="2.2771290992892648" />
-      <entry key="S5" value="3.9581216770187826" />
-      <entry key="S10" value="6.420908578414769" />
-      <entry key="S30" value="13.028027913400274" />
-      <entry key="S60" value="20.725885422482033" />
-      <entry key="M2" value="33.334866962497394" />
-      <entry key="M5" value="61.72634191171135" />
-      <entry key="M10" value="86.23889661911277" />
-      <entry key="M15" value="98.44503837357232" />
-      <entry key="M30" value="113.71191275947989" />
-      <entry key="H1" value="122.78115738163952" />
-      <entry key="H2" value="127.73659866299643" />
-      <entry key="H4" value="130.32843035557144" />
-      <entry key="D1" value="132.5490800104745" />
-      <entry key="W1" value="132.93544267724693" />
+      <entry key="MS100" value="1.1583398246360932E-27" />
+      <entry key="MS500" value="4.0998427309246134E-6" />
+      <entry key="S2" value="0.04499785370358394" />
+      <entry key="S5" value="0.28925223260738175" />
+      <entry key="S10" value="0.5378217479866185" />
+      <entry key="S30" value="0.8132288676265996" />
+      <entry key="S60" value="0.9017920312503319" />
+      <entry key="M2" value="0.949627311765164" />
+      <entry key="M5" value="0.9795379776085774" />
+      <entry key="M10" value="0.989716399584707" />
+      <entry key="M15" value="0.9933715547706866" />
+      <entry key="M30" value="1.1967448479288827" />
+      <entry key="H1" value="6.820577832502727" />
+      <entry key="H2" value="32.44450189832213" />
+      <entry key="H4" value="74.10481381683661" />
+      <entry key="D1" value="148.69226202886173" />
+      <entry key="W1" value="167.61781219882678" />
     </decayedShown>
   </component>
   <component name="ProjectApplicationVersion">
@@ -170,41 +186,66 @@
   &quot;fromUser&quot;: false
 }</component>
   <component name="ProjectId" id="3GMeqaWDNpDwrs2QPpPyOTetBA5" />
+  <component name="ProjectSessionTemplates">
+    <option name="panelTemplate">
+      <template>
+        <option name="modeId" value="Agent" />
+        <option name="model">
+          <model>
+            <option name="modelType" value="builtin_id" />
+            <option name="modelValue" value="auto" />
+          </model>
+        </option>
+        <option name="targetType" value="BACKGROUND" />
+        <option name="worktreeMode" value="WORKSPACE" />
+      </template>
+    </option>
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.RadMigrateCodeStyle&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;junie.plugin.stays.banner.dismissed&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/caspergamingone/Projects/git/CGO-DWM&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;org.rust.first.attach.projects&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.gitlab.GitLabSettingsConfigurable&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "CidrDebugProfileConversion": "true",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Native Application.all.executor": "Run",
+    "Native Application.dwm.executor": "Run",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.RadMigrateCodeStyle": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "copilot.chat.legacySessionMetadata.migrated": "true",
+    "git-widget-placeholder": "testing__1st__commit",
+    "junie.onboarding.icon.badge.shown": "true",
+    "junie.plugin.stays.banner.dismissed": "true",
+    "last_opened_file_path": "/home/caspergamingone/Projects/git/CGO-DWM",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "org.rust.first.attach.projects": "true",
+    "settings.editor.selected.configurable": "com.github.copilot.settings.general.GeneralConfigurable",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager" selected="Native Application.all">
+}]]></component>
+  <component name="RunManager" selected="Native Application.dwm">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Makefile" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="CGO-DWM" TARGET_NAME="Makefile" CONFIG_NAME="Makefile" version="1" RUN_TARGET_PROJECT_NAME="CGO-DWM" RUN_TARGET_NAME="Makefile">
       <method v="2">
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
@@ -230,6 +271,16 @@
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
       </method>
     </configuration>
+    <configuration name="test" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="CGO-DWM" TARGET_NAME="test" CONFIG_NAME="test" version="1" RUN_TARGET_PROJECT_NAME="CGO-DWM" RUN_TARGET_NAME="test">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="test_util" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="CGO-DWM" TARGET_NAME="test_util" CONFIG_NAME="test_util" version="1" RUN_TARGET_PROJECT_NAME="CGO-DWM" RUN_TARGET_NAME="test_util">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="uninstall" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="CGO-DWM" TARGET_NAME="uninstall" CONFIG_NAME="uninstall" version="1" RUN_TARGET_PROJECT_NAME="CGO-DWM" RUN_TARGET_NAME="uninstall">
       <method v="2">
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
@@ -241,6 +292,8 @@
       <item itemvalue="Native Application.dist" />
       <item itemvalue="Native Application.dwm" />
       <item itemvalue="Native Application.install" />
+      <item itemvalue="Native Application.test" />
+      <item itemvalue="Native Application.test_util" />
       <item itemvalue="Native Application.uninstall" />
     </list>
   </component>
@@ -307,5 +360,9 @@
     <MESSAGE value="imported to CLion" />
     <MESSAGE value="added preserveonrestart patch to dwm" />
     <option name="LAST_COMMIT_MESSAGE" value="added preserveonrestart patch to dwm" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
