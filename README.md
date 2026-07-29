@@ -7,7 +7,7 @@
 > For future contributors, this is what i plan to implement if you would like to help. First ofc fork the project then open up a pull request.
 > DOCUMENT EVERYTHING YOU DO IN THE PULL REQUEST. Also don't touch upstream please, that is the vanilla dwm
 
-- [ ] trying to modularize dwm, just being in a single .c file is something alright
+- [x] trying to modularize dwm, just being in a single .c file is something alright [ Heavy review still needs to be done ]
 - [ ] implementing dwm-ipc or stealing an already made one XD, kidding
 - [ ] standardize code formatting & Linting
 - [ ] setup more automated CIs
