@@ -19,7 +19,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+const char* tags[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -38,8 +38,8 @@ static const int resizehints = 1;    /* 1 means respect size hints in tiled resi
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 static const int refreshrate = 120;  /* refresh rate (per second) for client move/resize */
 
-static const Layout layouts[] = {
-	/* symbol     arrange function */
+const Layout layouts[] = {
+    /* symbol     arrange function */
 	{ "[]=",      tile },    /* first entry is default */
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
@@ -117,3 +117,24 @@ static const Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
+
+static const char* ipcsockpath = "/tmp/dwm.sock";
+static IPCCommand ipccommands[] = {
+    IPCCOMMAND(focusmon, 1, {ARG_TYPE_SINT}),
+    IPCCOMMAND(focusstack, 1, {ARG_TYPE_SINT}),
+    IPCCOMMAND(incnmaster, 1, {ARG_TYPE_SINT}),
+    IPCCOMMAND(killclient, 1, {ARG_TYPE_SINT}),
+    IPCCOMMAND(quit, 1, {ARG_TYPE_NONE}),
+    IPCCOMMAND(setlayoutsafe, 1, {ARG_TYPE_PTR}),
+    IPCCOMMAND(setmfact, 1, {ARG_TYPE_FLOAT}),
+    IPCCOMMAND(setstatus, 1, {ARG_TYPE_STR}),
+    IPCCOMMAND(tag, 1, {ARG_TYPE_UINT}),
+    IPCCOMMAND(tagmon, 1, {ARG_TYPE_SINT}),
+    IPCCOMMAND(togglebar, 1, {ARG_TYPE_NONE}),
+    IPCCOMMAND(togglefloating, 1, {ARG_TYPE_NONE}),
+    IPCCOMMAND(toggletag, 1, {ARG_TYPE_UINT}),
+    IPCCOMMAND(toggleview, 1, {ARG_TYPE_UINT}),
+    IPCCOMMAND(view, 1, {ARG_TYPE_UINT}),
+    IPCCOMMAND(zoom, 1, {ARG_TYPE_NONE}),
+};
+

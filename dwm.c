@@ -21,6 +21,7 @@
  * To understand everything else, start reading main().
  */
 #include "dwm.h"
+#include "ipc.h"
 
 /* variables */
 const char broken[] = "broken";
@@ -56,6 +57,8 @@ Display* dpy;
 Drw* drw;
 Monitor *mons, *selmon;
 Window root, wmcheckwin;
+int epoll_fd = -1;
+int dpy_fd = -1;
 
 /* configuration, allows nested code to access above variables */
 #include "config.h"
@@ -284,6 +287,9 @@ cleanup(void)
 	XSync(dpy, False);
 	XSetInputFocus(dpy, PointerRoot, RevertToPointerRoot, CurrentTime);
 	XDeleteProperty(dpy, root, netatom[NetActiveWindow]);
+	ipc_cleanup();
+	if (epoll_fd >= 0)
+		close(epoll_fd);
 }
 
 void
@@ -1178,11 +1184,66 @@ void
 run(void)
 {
 	XEvent ev;
-	/* main event loop */
+	int epoll_event_count;
+	struct epoll_event events[MAX_EVENTS];
+	int ipc_sock_fd = ipc_get_sock_fd();
+
 	XSync(dpy, False);
-	while (running && !XNextEvent(dpy, &ev))
-		if (handler[ev.type])
-			handler[ev.type](&ev); /* call handler */
+
+	while (running)
+	{
+		epoll_event_count = epoll_wait(epoll_fd, events, MAX_EVENTS, -1);
+		if (epoll_event_count < 0)
+		{
+			if (errno == EINTR) continue;
+			die("dwm: epoll_wait failed");
+		}
+
+		for (int i = 0; i < epoll_event_count; i++)
+		{
+			int event_fd = events[i].data.fd;
+
+			if (event_fd == dpy_fd)
+			{
+				while (XPending(dpy))
+				{
+					XNextEvent(dpy, &ev);
+					if (handler[ev.type])
+						handler[ev.type](&ev);
+				}
+			}
+			else if (event_fd == ipc_sock_fd)
+			{
+				ipc_accept_client();
+			}
+			else if (ipc_is_client_registered(event_fd))
+			{
+				IPCClient* c = ipc_get_client(event_fd);
+
+				if (events[i].events & EPOLLIN)
+				{
+					uint8_t msg_type;
+					uint32_t msg_size;
+					char* msg = NULL;
+
+					if (ipc_read_client(c, &msg_type, &msg_size, &msg) < 0)
+					{
+						ipc_drop_client(c);
+						continue;
+					}
+					if (msg) free(msg);
+				}
+
+				if (events[i].events & EPOLLOUT)
+				{
+					if (ipc_write_client(c) < 0)
+					{
+						ipc_drop_client(c);
+					}
+				}
+			}
+		}
+	}
 }
 
 void
@@ -1317,6 +1378,26 @@ setlayout(const Arg *arg)
 		drawbar(selmon);
 }
 
+void
+setlayoutsafe(const Arg* arg)
+{
+	const Layout* lt = NULL;
+	if (arg && arg->v)
+		lt = (const Layout*)arg->v;
+
+	for (int i = 0; i < LENGTH(layouts); i++)
+	{
+		if (&layouts[i] == lt)
+		{
+			Arg a = {.v = &layouts[i]};
+			setlayout(&a);
+			return;
+		}
+	}
+	Arg a = {.v = NULL};
+	setlayout(&a);
+}
+
 /* arg > 1.0 will set mfact absolutely */
 void
 setmfact(const Arg *arg)
@@ -1330,6 +1411,15 @@ setmfact(const Arg *arg)
 		return;
 	selmon->mfact = f;
 	arrange(selmon);
+}
+
+void
+setstatus(const Arg* arg)
+{
+	if (!arg || !arg->v)
+		return;
+	safe_strcpy(stext, (const char*)arg->v, sizeof(stext));
+	drawbar(selmon);
 }
 
 void
@@ -1414,6 +1504,19 @@ setup(void)
 	XSelectInput(dpy, root, wa.event_mask);
 	grabkeys();
 	focus(NULL);
+
+	/* IPC initialization */
+	epoll_fd = epoll_create1(0);
+	if (epoll_fd < 0)
+		die("dwm: failed to create epoll instance");
+	dpy_fd = ConnectionNumber(dpy);
+	struct epoll_event dpy_epoll_event = {
+		.events = EPOLLIN,
+		.data.fd = dpy_fd
+	};
+	if (epoll_ctl(epoll_fd, EPOLL_CTL_ADD, dpy_fd, &dpy_epoll_event) < 0)
+		die("dwm: failed to add dpy_fd to epoll");
+	ipc_init(ipcsockpath, epoll_fd, ipccommands, LENGTH(ipccommands));
 }
 
 void

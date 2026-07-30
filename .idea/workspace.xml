@@ -17,6 +17,7 @@
       <config projectName="CGO-DWM" targetName="all" />
       <config projectName="CGO-DWM" targetName="dwm" />
       <config projectName="CGO-DWM" targetName="test_util" />
+      <config projectName="CGO-DWM" targetName="dwm-msg" />
       <config projectName="CGO-DWM" targetName="Makefile" />
       <config projectName="CGO-DWM" targetName="test" />
       <config projectName="CGO-DWM" targetName="install" />
@@ -31,11 +32,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6e1f14cb-8c0d-4ed0-a0ce-301be8100503" name="Changes" comment="added preserveonrestart patch to dwm">
-      <change beforePath="$PROJECT_DIR$/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/editor.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.def.h" beforeDir="false" afterPath="$PROJECT_DIR$/config.def.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.h" beforeDir="false" afterPath="$PROJECT_DIR$/config.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dwm" beforeDir="false" afterPath="$PROJECT_DIR$/dwm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dwm.c" beforeDir="false" afterPath="$PROJECT_DIR$/dwm.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dwm.h" beforeDir="false" afterPath="$PROJECT_DIR$/dwm.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dwm.o" beforeDir="false" afterPath="$PROJECT_DIR$/dwm.o" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,23 +122,23 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0" />
-      <entry key="S2" value="1.0" />
-      <entry key="S5" value="1.0" />
-      <entry key="S10" value="1.0" />
-      <entry key="S30" value="1.0" />
-      <entry key="S60" value="1.0" />
-      <entry key="M2" value="1.0" />
-      <entry key="M5" value="1.0000000000000004" />
-      <entry key="M10" value="1.000000289985743" />
-      <entry key="M15" value="1.0002392894892027" />
-      <entry key="M30" value="1.2001860003902285" />
-      <entry key="H1" value="6.8223207785545" />
-      <entry key="H2" value="32.445423618971006" />
-      <entry key="H4" value="74.10531640884409" />
-      <entry key="D1" value="148.69235846315868" />
-      <entry key="W1" value="167.61782643842048" />
+      <entry key="MS100" value="1.1351217044629973" />
+      <entry key="MS500" value="3.1150968262800047" />
+      <entry key="S2" value="8.23951956282884" />
+      <entry key="S5" value="12.441985432491501" />
+      <entry key="S10" value="15.481144489359567" />
+      <entry key="S30" value="19.1177988010974" />
+      <entry key="S60" value="20.49057282382201" />
+      <entry key="M2" value="21.425019872819682" />
+      <entry key="M5" value="22.232887811503925" />
+      <entry key="M10" value="22.5848913909998" />
+      <entry key="M15" value="22.7155943879388" />
+      <entry key="M30" value="23.035821280673076" />
+      <entry key="H1" value="28.481724172922576" />
+      <entry key="H2" value="53.68052712521931" />
+      <entry key="H4" value="95.23597254947668" />
+      <entry key="D1" value="170.4014277300751" />
+      <entry key="W1" value="189.57095765400908" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
@@ -156,23 +160,23 @@
       <entry key="W1" value="0.0" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.1583398246360932E-27" />
-      <entry key="MS500" value="4.0998427309246134E-6" />
-      <entry key="S2" value="0.04499785370358394" />
-      <entry key="S5" value="0.28925223260738175" />
-      <entry key="S10" value="0.5378217479866185" />
-      <entry key="S30" value="0.8132288676265996" />
-      <entry key="S60" value="0.9017920312503319" />
-      <entry key="M2" value="0.949627311765164" />
-      <entry key="M5" value="0.9795379776085774" />
-      <entry key="M10" value="0.989716399584707" />
-      <entry key="M15" value="0.9933715547706866" />
-      <entry key="M30" value="1.1967448479288827" />
-      <entry key="H1" value="6.820577832502727" />
-      <entry key="H2" value="32.44450189832213" />
-      <entry key="H4" value="74.10481381683661" />
-      <entry key="D1" value="148.69226202886173" />
-      <entry key="W1" value="167.61781219882678" />
+      <entry key="MS100" value="1.0957744795183775" />
+      <entry key="MS500" value="3.0919180019906007" />
+      <entry key="S2" value="8.223357465184094" />
+      <entry key="S5" value="12.432020457822851" />
+      <entry key="S10" value="15.47485444938133" />
+      <entry key="S30" value="19.11448493826183" />
+      <entry key="S60" value="20.483235458517022" />
+      <entry key="M2" value="21.411914972069972" />
+      <entry key="M5" value="22.220917847505493" />
+      <entry key="M10" value="22.57697338973592" />
+      <entry key="M15" value="22.70979753360132" />
+      <entry key="M30" value="23.03263660620207" />
+      <entry key="H1" value="28.480035364752176" />
+      <entry key="H2" value="53.67961393268132" />
+      <entry key="H4" value="95.23546940522984" />
+      <entry key="D1" value="170.40133041675304" />
+      <entry key="W1" value="189.57094326595566" />
     </decayedShown>
   </component>
   <component name="ProjectApplicationVersion">
@@ -225,7 +229,7 @@
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
     "copilot.chat.legacySessionMetadata.migrated": "true",
-    "git-widget-placeholder": "testing__1st__commit",
+    "git-widget-placeholder": "dwm-ipc__implementation",
     "junie.onboarding.icon.badge.shown": "true",
     "junie.plugin.stays.banner.dismissed": "true",
     "last_opened_file_path": "/home/caspergamingone/Projects/git/CGO-DWM",
@@ -261,6 +265,11 @@
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
       </method>
     </configuration>
+    <configuration name="dwm-msg" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="CGO-DWM" TARGET_NAME="dwm-msg" CONFIG_NAME="dwm-msg" version="1" RUN_TARGET_PROJECT_NAME="CGO-DWM" RUN_TARGET_NAME="dwm-msg">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="dwm" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="CGO-DWM" TARGET_NAME="dwm" CONFIG_NAME="dwm" version="1" RUN_TARGET_PROJECT_NAME="CGO-DWM" RUN_TARGET_NAME="dwm">
       <method v="2">
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
@@ -291,6 +300,7 @@
       <item itemvalue="Native Application.all" />
       <item itemvalue="Native Application.dist" />
       <item itemvalue="Native Application.dwm" />
+      <item itemvalue="Native Application.dwm-msg" />
       <item itemvalue="Native Application.install" />
       <item itemvalue="Native Application.test" />
       <item itemvalue="Native Application.test_util" />
