@@ -31,16 +31,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e1f14cb-8c0d-4ed0-a0ce-301be8100503" name="Changes" comment="added preserveonrestart patch to dwm">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.def.h" beforeDir="false" afterPath="$PROJECT_DIR$/config.def.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.h" beforeDir="false" afterPath="$PROJECT_DIR$/config.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dwm" beforeDir="false" afterPath="$PROJECT_DIR$/dwm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dwm.c" beforeDir="false" afterPath="$PROJECT_DIR$/dwm.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dwm.h" beforeDir="false" afterPath="$PROJECT_DIR$/dwm.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dwm.o" beforeDir="false" afterPath="$PROJECT_DIR$/dwm.o" afterDir="false" />
-    </list>
+    <list default="true" id="6e1f14cb-8c0d-4ed0-a0ce-301be8100503" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -49,6 +40,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
+
   <component name="CopilotPersistence">
     <persistenceIdMap>
       <entry key="_/home/djsnowdogs/CLionProjects/CGO-DWM" value="3HBcfY8n4jtchRn2g7pfRSAl61T" />
@@ -232,7 +224,6 @@
     "git-widget-placeholder": "dwm-ipc__implementation",
     "junie.onboarding.icon.badge.shown": "true",
     "junie.plugin.stays.banner.dismissed": "true",
-    "last_opened_file_path": "/home/caspergamingone/Projects/git/CGO-DWM",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
