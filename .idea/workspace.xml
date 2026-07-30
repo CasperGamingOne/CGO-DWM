@@ -31,9 +31,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e1f14cb-8c0d-4ed0-a0ce-301be8100503" name="Changes" comment="cleaned up wokspace.xml">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="6e1f14cb-8c0d-4ed0-a0ce-301be8100503" name="Changes" comment="cleaned up wokspace.xml" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -115,23 +113,23 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.1351217044629973" />
-      <entry key="MS500" value="3.1150968262800047" />
-      <entry key="S2" value="8.23951956282884" />
-      <entry key="S5" value="12.441985432491501" />
-      <entry key="S10" value="15.481144489359567" />
-      <entry key="S30" value="19.1177988010974" />
-      <entry key="S60" value="20.49057282382201" />
-      <entry key="M2" value="21.425019872819682" />
-      <entry key="M5" value="22.232887811503925" />
-      <entry key="M10" value="22.5848913909998" />
-      <entry key="M15" value="22.7155943879388" />
-      <entry key="M30" value="23.035821280673076" />
-      <entry key="H1" value="28.481724172922576" />
-      <entry key="H2" value="53.68052712521931" />
-      <entry key="H4" value="95.23597254947668" />
-      <entry key="D1" value="170.4014277300751" />
-      <entry key="W1" value="189.57095765400908" />
+      <entry key="MS100" value="1.0028137041026324" />
+      <entry key="MS500" value="1.4240298201007138" />
+      <entry key="S2" value="3.3834356252333517" />
+      <entry key="S5" value="8.33779100992495" />
+      <entry key="S10" value="13.914520286714541" />
+      <entry key="S30" value="21.555351668254396" />
+      <entry key="S60" value="24.514389744772494" />
+      <entry key="M2" value="26.374463563907295" />
+      <entry key="M5" value="27.792801721183398" />
+      <entry key="M10" value="28.36074517336649" />
+      <entry key="M15" value="28.565167023950856" />
+      <entry key="M30" value="28.959542010093887" />
+      <entry key="H1" value="34.435419774440234" />
+      <entry key="H2" value="59.63853396736722" />
+      <entry key="H4" value="101.19944081898349" />
+      <entry key="D1" value="176.3906552776279" />
+      <entry key="W1" value="195.5692480749746" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
@@ -153,23 +151,23 @@
       <entry key="W1" value="0.0" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.0957744795183775" />
-      <entry key="MS500" value="3.0919180019906007" />
-      <entry key="S2" value="8.223357465184094" />
-      <entry key="S5" value="12.432020457822851" />
-      <entry key="S10" value="15.47485444938133" />
-      <entry key="S30" value="19.11448493826183" />
-      <entry key="S60" value="20.483235458517022" />
-      <entry key="M2" value="21.411914972069972" />
-      <entry key="M5" value="22.220917847505493" />
-      <entry key="M10" value="22.57697338973592" />
-      <entry key="M15" value="22.70979753360132" />
-      <entry key="M30" value="23.03263660620207" />
-      <entry key="H1" value="28.480035364752176" />
-      <entry key="H2" value="53.67961393268132" />
-      <entry key="H4" value="95.23546940522984" />
-      <entry key="D1" value="170.40133041675304" />
-      <entry key="W1" value="189.57094326595566" />
+      <entry key="MS100" value="0.9619446469762372" />
+      <entry key="MS500" value="1.4118060570687576" />
+      <entry key="S2" value="3.374867724417623" />
+      <entry key="S5" value="8.328389050837142" />
+      <entry key="S10" value="13.9066861247718" />
+      <entry key="S30" value="21.550813782193693" />
+      <entry key="S60" value="24.506739829470693" />
+      <entry key="M2" value="26.36144704714053" />
+      <entry key="M5" value="27.780846207766764" />
+      <entry key="M10" value="28.352798037720046" />
+      <entry key="M15" value="28.559338023696007" />
+      <entry key="M30" value="28.95633341586406" />
+      <entry key="H1" value="34.433716756734036" />
+      <entry key="H2" value="59.63761308632797" />
+      <entry key="H4" value="101.19893367615849" />
+      <entry key="D1" value="176.39055727243937" />
+      <entry key="W1" value="195.56923358734122" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -286,15 +284,15 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Native Application.Makefile" />
       <item itemvalue="Native Application.all" />
       <item itemvalue="Native Application.dist" />
+      <item itemvalue="Native Application.dwm-msg" />
+      <item itemvalue="Native Application.dwm" />
       <item itemvalue="Native Application.install" />
       <item itemvalue="Native Application.test" />
       <item itemvalue="Native Application.test_util" />
       <item itemvalue="Native Application.uninstall" />
-      <item itemvalue="Native Application.dwm" />
-      <item itemvalue="Native Application.dwm-msg" />
-      <item itemvalue="Native Application.Makefile" />
     </list>
   </component>
   <component name="RustProjectSettings">
