@@ -45,6 +45,7 @@ jobs:
             }
 
             if (!isValidTitle) {
+              labelsToAdd.push('needs-triage');
               const commentBody = `@${author} The PR title format is invalid. Please use the Conventional Commits format:\n\n\`<type>[optional scope]: <description>\`\n\nValid types are: \`fix\`, \`bug\`, \`security\`, \`feat\`, \`docs\`, \`style\`, \`refactor\`, \`perf\`, \`test\`, \`chore\`.\n\nExample: \`fix: resolve crash on startup\``;
 
               // Check if we already commented to avoid spamming
@@ -64,9 +65,8 @@ jobs:
                   body: commentBody
                 });
               }
-              core.setFailed('Invalid PR title format.');
-              return; // Stop execution if title is invalid
             } else {
+              labelsToRemove.push('needs-triage');
               // Add priority based on prefix
               if (['fix', 'bug'].includes(titlePrefix)) {
                 labelsToAdd.push('priority/high');
