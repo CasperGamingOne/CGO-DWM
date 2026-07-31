@@ -48,22 +48,26 @@ jobs:
               labelsToAdd.push('needs-triage');
               const commentBody = `@${author} The PR title format is invalid. Please use the Conventional Commits format:\n\n\`<type>[optional scope]: <description>\`\n\nValid types are: \`fix\`, \`bug\`, \`security\`, \`feat\`, \`docs\`, \`style\`, \`refactor\`, \`perf\`, \`test\`, \`chore\`.\n\nExample: \`fix: resolve crash on startup\``;
 
-              // Check if we already commented to avoid spamming
-              const comments = await github.paginate(github.rest.issues.listComments, {
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: pr.number,
-              });
-
-              const hasCommented = comments.some(c => c.body.includes('The PR title format is invalid') && c.user.login === 'github-actions[bot]');
-
-              if (!hasCommented) {
-                await github.rest.issues.createComment({
+              try {
+                // Check if we already commented to avoid spamming
+                const comments = await github.paginate(github.rest.issues.listComments, {
                   owner: context.repo.owner,
                   repo: context.repo.repo,
                   issue_number: pr.number,
-                  body: commentBody
                 });
+
+                const hasCommented = comments.some(c => c.body.includes('The PR title format is invalid') && c.user.login === 'github-actions[bot]');
+
+                if (!hasCommented) {
+                  await github.rest.issues.createComment({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    issue_number: pr.number,
+                    body: commentBody
+                  });
+                }
+              } catch (e) {
+                console.log('Could not post PR title comment (insufficient permissions or fork PR):', e);
               }
             } else {
               labelsToRemove.push('needs-triage');
