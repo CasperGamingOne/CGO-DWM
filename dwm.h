@@ -37,6 +37,7 @@
 #define HEIGHT(X)               ((X)->h + 2 * (X)->bw)
 #define TAGMASK                 ((1 << LENGTH(tags)) - 1)
 #define TEXTW(X)                (drw_fontset_getwidth(drw, (X)) + lrpad)
+#define MAX_EVENTS              16
 
 /* enums */
 enum { CurNormal, CurResize, CurMove, CurLast }; /* cursor */
@@ -156,6 +157,12 @@ extern Display* dpy;
 extern Drw* drw;
 extern Monitor *mons, *selmon;
 extern Window root, wmcheckwin;
+extern int epoll_fd;
+extern int dpy_fd;
+extern const char* tags[9];
+extern const Layout layouts[3];
+extern const int TAGS_LENGTH;
+extern const int LAYOUTS_LENGTH;
 
 /* Functions declared in dwm.c or modules */
 void applyrules(Client* c);
@@ -218,7 +225,9 @@ void setclienttagprop(Client* c);
 void setfocus(Client* c);
 void setfullscreen(Client* c, int fullscreen);
 void setlayout(const Arg* arg);
+void setlayoutsafe(const Arg* arg);
 void setmfact(const Arg* arg);
+void setstatus(const Arg* arg);
 void setup(void);
 void seturgent(Client* c, int urg);
 void showhide(Client* c);

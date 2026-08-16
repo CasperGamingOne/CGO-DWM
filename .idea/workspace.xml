@@ -17,6 +17,7 @@
       <config projectName="CGO-DWM" targetName="all" />
       <config projectName="CGO-DWM" targetName="dwm" />
       <config projectName="CGO-DWM" targetName="test_util" />
+      <config projectName="CGO-DWM" targetName="dwm-msg" />
       <config projectName="CGO-DWM" targetName="Makefile" />
       <config projectName="CGO-DWM" targetName="test" />
       <config projectName="CGO-DWM" targetName="install" />
@@ -30,12 +31,8 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e1f14cb-8c0d-4ed0-a0ce-301be8100503" name="Changes" comment="added preserveonrestart patch to dwm">
-      <change beforePath="$PROJECT_DIR$/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/editor.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dwm.c" beforeDir="false" afterPath="$PROJECT_DIR$/dwm.c" afterDir="false" />
+    <list default="true" id="6e1f14cb-8c0d-4ed0-a0ce-301be8100503" name="Changes" comment="fixed compilation error">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/security.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/security.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,18 +67,26 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="UPDATE_TYPE" value="REBASE" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;CasperGamingOne&quot;
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {}
+}]]></component>
+  <component name="GitHubPullRequestState"><![CDATA[{
+  "prStates": [
+    {
+      "id": {
+        "id": "PR_kwDOTJIG6s74to9f",
+        "number": 21
+      },
+      "lastSeen": 1785468340857
+    }
+  ]
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/CasperGamingOne/CGO-DWM.git",
+    "accountId": "a0f20276-a8ec-419f-a173-0e571f02dcd4"
   }
-}</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/DJSnowDogs/CGO-DWM.git&quot;,
-    &quot;accountId&quot;: &quot;d606b11f-404c-481b-b094-3c56ac8b8a4c&quot;
-  }
-}</component>
+}]]></component>
   <component name="MacroExpansionManager">
     <option name="directoryName" value="TrkAB677" />
   </component>
@@ -112,29 +117,32 @@
       </map>
     </option>
   </component>
+  <component name="MaliciousPackageCheckinHandlerState">
+    <option name="packageCheck" value="true" />
+  </component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0" />
-      <entry key="S2" value="1.0" />
-      <entry key="S5" value="1.0" />
-      <entry key="S10" value="1.0" />
-      <entry key="S30" value="1.0" />
-      <entry key="S60" value="1.0" />
-      <entry key="M2" value="1.0" />
-      <entry key="M5" value="1.0000000000000004" />
-      <entry key="M10" value="1.000000289985743" />
-      <entry key="M15" value="1.0002392894892027" />
-      <entry key="M30" value="1.2001860003902285" />
-      <entry key="H1" value="6.8223207785545" />
-      <entry key="H2" value="32.445423618971006" />
-      <entry key="H4" value="74.10531640884409" />
-      <entry key="D1" value="148.69235846315868" />
-      <entry key="W1" value="167.61782643842048" />
+      <entry key="MS100" value="1.0028137041026324" />
+      <entry key="MS500" value="1.4240298201007138" />
+      <entry key="S2" value="3.3834356252333517" />
+      <entry key="S5" value="8.33779100992495" />
+      <entry key="S10" value="13.914520286714541" />
+      <entry key="S30" value="21.555351668254396" />
+      <entry key="S60" value="24.514389744772494" />
+      <entry key="M2" value="26.374463563907295" />
+      <entry key="M5" value="27.792801721183398" />
+      <entry key="M10" value="28.36074517336649" />
+      <entry key="M15" value="28.565167023950856" />
+      <entry key="M30" value="28.959542010093887" />
+      <entry key="H1" value="34.435419774440234" />
+      <entry key="H2" value="59.63853396736722" />
+      <entry key="H4" value="101.19944081898349" />
+      <entry key="D1" value="176.3906552776279" />
+      <entry key="W1" value="195.5692480749746" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
@@ -156,24 +164,27 @@
       <entry key="W1" value="0.0" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.1583398246360932E-27" />
-      <entry key="MS500" value="4.0998427309246134E-6" />
-      <entry key="S2" value="0.04499785370358394" />
-      <entry key="S5" value="0.28925223260738175" />
-      <entry key="S10" value="0.5378217479866185" />
-      <entry key="S30" value="0.8132288676265996" />
-      <entry key="S60" value="0.9017920312503319" />
-      <entry key="M2" value="0.949627311765164" />
-      <entry key="M5" value="0.9795379776085774" />
-      <entry key="M10" value="0.989716399584707" />
-      <entry key="M15" value="0.9933715547706866" />
-      <entry key="M30" value="1.1967448479288827" />
-      <entry key="H1" value="6.820577832502727" />
-      <entry key="H2" value="32.44450189832213" />
-      <entry key="H4" value="74.10481381683661" />
-      <entry key="D1" value="148.69226202886173" />
-      <entry key="W1" value="167.61781219882678" />
+      <entry key="MS100" value="0.9619446469762372" />
+      <entry key="MS500" value="1.4118060570687576" />
+      <entry key="S2" value="3.374867724417623" />
+      <entry key="S5" value="8.328389050837142" />
+      <entry key="S10" value="13.9066861247718" />
+      <entry key="S30" value="21.550813782193693" />
+      <entry key="S60" value="24.506739829470693" />
+      <entry key="M2" value="26.36144704714053" />
+      <entry key="M5" value="27.780846207766764" />
+      <entry key="M10" value="28.352798037720046" />
+      <entry key="M15" value="28.559338023696007" />
+      <entry key="M30" value="28.95633341586406" />
+      <entry key="H1" value="34.433716756734036" />
+      <entry key="H2" value="59.63761308632797" />
+      <entry key="H4" value="101.19893367615849" />
+      <entry key="D1" value="176.39055727243937" />
+      <entry key="W1" value="195.56923358734122" />
     </decayedShown>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectApplicationVersion">
     <option name="ide" value="CLion" />
@@ -225,27 +236,21 @@
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
     "copilot.chat.legacySessionMetadata.migrated": "true",
-    "git-widget-placeholder": "testing__1st__commit",
+    "git-widget-placeholder": "#21 on fork/DJSnowDogs/dwm-ipc__implementation",
     "junie.onboarding.icon.badge.shown": "true",
     "junie.plugin.stays.banner.dismissed": "true",
-    "last_opened_file_path": "/home/caspergamingone/Projects/git/CGO-DWM",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "org.rust.first.attach.projects": "true",
-    "settings.editor.selected.configurable": "com.github.copilot.settings.general.GeneralConfigurable",
+    "settings.editor.selected.configurable": "vcs.Git",
     "to.speed.mode.migration.done": "true",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RunManager" selected="Native Application.dwm">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Makefile" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="CGO-DWM" TARGET_NAME="Makefile" CONFIG_NAME="Makefile" version="1" RUN_TARGET_PROJECT_NAME="CGO-DWM" RUN_TARGET_NAME="Makefile">
       <method v="2">
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
@@ -257,6 +262,11 @@
       </method>
     </configuration>
     <configuration name="dist" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="CGO-DWM" TARGET_NAME="dist" CONFIG_NAME="dist" version="1" RUN_TARGET_PROJECT_NAME="CGO-DWM" RUN_TARGET_NAME="dist">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="dwm-msg" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="CGO-DWM" TARGET_NAME="dwm-msg" CONFIG_NAME="dwm-msg" version="1" RUN_TARGET_PROJECT_NAME="CGO-DWM" RUN_TARGET_NAME="dwm-msg">
       <method v="2">
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
       </method>
@@ -286,10 +296,16 @@
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Native Application.Makefile" />
       <item itemvalue="Native Application.all" />
       <item itemvalue="Native Application.dist" />
+      <item itemvalue="Native Application.dwm-msg" />
       <item itemvalue="Native Application.dwm" />
       <item itemvalue="Native Application.install" />
       <item itemvalue="Native Application.test" />
@@ -333,6 +349,9 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UpdateCopyrightCheckinHandler">
+    <option name="UPDATE_COPYRIGHT" value="true" />
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -357,9 +376,15 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <MESSAGE value="imported to CLion" />
     <MESSAGE value="added preserveonrestart patch to dwm" />
-    <option name="LAST_COMMIT_MESSAGE" value="added preserveonrestart patch to dwm" />
+    <MESSAGE value="cleaned up wokspace.xml" />
+    <MESSAGE value="fixed compilation error" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed compilation error" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
